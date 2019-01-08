@@ -21,10 +21,24 @@ namespace ApartmanOtomasyonu
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Gider newGider = new Gider();
-            newGider.Tarih = dateTimePicker1.Value;
-            newGider.Tutar = numericUpDown1.Value;            
-            gider.InsertGider(newGider);
+          //  string GiderTur = "";
+            foreach (Control item in this.groupBox1.Controls)
+            {
+                if (item is RadioButton)
+                {
+                    RadioButton rb = item as RadioButton;
+                    if (rb.Checked == true)
+                    {                      
+                        Gider newGider = new Gider();
+                        newGider.Tarih = dateTimePicker1.Value;
+                        newGider.Tutar = numericUpDown1.Value;
+                        newGider.GiderTuru = Enum.Parse(typeof(GiderTuru), item);
+                        gider.InsertGider(newGider);
+                    }
+                }
+
+            }
+          
             FillGrid();
         }
 
@@ -46,7 +60,7 @@ namespace ApartmanOtomasyonu
             Type t = typeof(GiderTuru);
             foreach (var item in t.GetEnumNames())
             {
-                CheckBox c = new CheckBox();
+                RadioButton c = new RadioButton();
                 c.Text = item;
                 a += 20;
                 c.Top = a ;

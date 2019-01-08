@@ -21,6 +21,7 @@ namespace ApartmanOtomasyonu.BusinessLogic
                 g.ID =(int) row["GiderID"];
                 g.Tarih = (DateTime)row["Tarih"];
                 g.Tutar = (decimal)row["Tutar"];
+                g.GiderTuru = (GiderTuru)row["GiderTuru"];
                 list.Add(g);
             }
             return list;
@@ -29,7 +30,8 @@ namespace ApartmanOtomasyonu.BusinessLogic
         {          
             SqlParameter p1 = new SqlParameter("Tarih", newGider.Tarih);
             SqlParameter p2 = new SqlParameter("Tutar", newGider.Tutar);
-            Program.SqlHelper.ExecutePro("InsertGider", p1, p2);
+            SqlParameter p3 = new SqlParameter("GiderTuru", newGider);
+            Program.SqlHelper.ExecutePro("InsertGider", p1, p2,p3);
         }
         
     }
