@@ -32,7 +32,7 @@ namespace ApartmanOtomasyonu
                         Gider newGider = new Gider();
                         newGider.Tarih = dateTimePicker1.Value;
                         newGider.Tutar = numericUpDown1.Value;
-                        newGider.GiderTuru = Enum.Parse(typeof(GiderTuru), item);
+                        newGider.GiderTuru = typeof(GiderTuru).IsValueType(item);
                         gider.InsertGider(newGider);
                     }
                 }

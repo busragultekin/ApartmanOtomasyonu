@@ -30,7 +30,7 @@ namespace ApartmanOtomasyonu.BusinessLogic
         {          
             SqlParameter p1 = new SqlParameter("Tarih", newGider.Tarih);
             SqlParameter p2 = new SqlParameter("Tutar", newGider.Tutar);
-            SqlParameter p3 = new SqlParameter("GiderTuru", newGider);
+            SqlParameter p3 = new SqlParameter("GiderTuru", newGider.GiderTuru);
             Program.SqlHelper.ExecutePro("InsertGider", p1, p2,p3);
         }
         
