@@ -21,7 +21,6 @@ namespace ApartmanOtomasyonu
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-          //  string GiderTur = "";
             foreach (Control item in this.groupBox1.Controls)
             {
                 if (item is RadioButton)
@@ -29,11 +28,11 @@ namespace ApartmanOtomasyonu
                     RadioButton rb = item as RadioButton;
                     if (rb.Checked == true)
                     {                      
-                        Gider newGider = new Gider();
-                        newGider.Tarih = dateTimePicker1.Value;
-                        newGider.Tutar = numericUpDown1.Value;
-                        newGider.GiderTuru = typeof(GiderTuru).IsValueType(item);
-                        gider.InsertGider(newGider);
+                        Gider yeniGider = new Gider();
+                        yeniGider.Tarih = dateTimePicker1.Value;
+                        yeniGider.Tutar = numericUpDown1.Value;
+                        yeniGider.GiderTuru = (GiderTuru)Enum.Parse(typeof(GiderTuru), item.Text);
+                        gider.InsertGider(yeniGider);
                     }
                 }
 
@@ -50,6 +49,7 @@ namespace ApartmanOtomasyonu
 
         private void Giderler_Load(object sender, EventArgs e)
         {
+            Grid();
             GiderTuru();
             FillGrid();
            
@@ -60,13 +60,26 @@ namespace ApartmanOtomasyonu
             Type t = typeof(GiderTuru);
             foreach (var item in t.GetEnumNames())
             {
-                RadioButton c = new RadioButton();
-                c.Text = item;
+                RadioButton rb = new RadioButton();
+                rb.Text = item;
                 a += 20;
-                c.Top = a ;
-                groupBox1.Controls.Add(c);                  
+                rb.Top = a ;
+                rb.Left = 5;
+                groupBox1.Controls.Add(rb);                  
             }
             
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            gider.DeleteGider((int)dataGridView1.CurrentRow.Cells[0].Value);
+            FillGrid();
+        }
+
+    private void Grid()
+        {
+           // dataGridView1.Columns[0].Visible = false;
+            //dataGridView1.Columns["GiderTuru"].HeaderText = "Gider Türü";
         }
     }
 }

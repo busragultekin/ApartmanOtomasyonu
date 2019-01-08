@@ -21,18 +21,24 @@ namespace ApartmanOtomasyonu.BusinessLogic
                 g.ID =(int) row["GiderID"];
                 g.Tarih = (DateTime)row["Tarih"];
                 g.Tutar = (decimal)row["Tutar"];
-                g.GiderTuru = (GiderTuru)row["GiderTuru"];
+                g.GiderTuru = (GiderTuru)Enum.Parse(typeof(GiderTuru), row["GiderTuru"].ToString());
                 list.Add(g);
             }
             return list;
         }
-        public void InsertGider(Gider newGider)
+        public void InsertGider(Gider yeniGider)
         {          
-            SqlParameter p1 = new SqlParameter("Tarih", newGider.Tarih);
-            SqlParameter p2 = new SqlParameter("Tutar", newGider.Tutar);
-            SqlParameter p3 = new SqlParameter("GiderTuru", newGider.GiderTuru);
+            SqlParameter p1 = new SqlParameter("Tarih", yeniGider.Tarih);
+            SqlParameter p2 = new SqlParameter("Tutar", yeniGider.Tutar);
+            SqlParameter p3 = new SqlParameter("GiderTuru", SqlDbType.NVarChar,50);
+            p3.Value = yeniGider.GiderTuru;
             Program.SqlHelper.ExecutePro("InsertGider", p1, p2,p3);
         }
-        
+        public void DeleteGider(int id)
+        {
+            Program.SqlHelper.ExecuteCommand("delete  from Gider where GiderID='" + id + "'");
+
+        }
+
     }
 }

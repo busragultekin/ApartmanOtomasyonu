@@ -32,11 +32,11 @@ namespace ApartmanOtomasyonu
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            Gelir newGelir = new Gelir();
-            newGelir.DaireNo = (int)num_daire.Value;
-            newGelir.Tarih = dateTimePicker1.Value;
-            newGelir.Tutar = numtutar.Value;
-            gelir.InsertGelir(newGelir);
+            Gelir yeniGelir = new Gelir();
+            yeniGelir.DaireNo = (int)num_daire.Value;
+            yeniGelir.Tarih = dateTimePicker1.Value;
+            yeniGelir.Tutar = numtutar.Value;
+            gelir.InsertGelir(yeniGelir);
             FillGrid();
         }
 

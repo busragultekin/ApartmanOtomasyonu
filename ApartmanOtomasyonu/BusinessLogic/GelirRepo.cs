@@ -25,11 +25,11 @@ namespace ApartmanOtomasyonu.BusinessLogic
             }
             return list;
         }
-         public  void InsertGelir(Gelir newGelir)
+         public  void InsertGelir(Gelir yeniGelir)
         {
-            SqlParameter p1 = new SqlParameter("DaireNo", newGelir.DaireNo);
-            SqlParameter p2 = new SqlParameter("Tarih", newGelir.Tarih);
-            SqlParameter p3 = new SqlParameter("Tutar", newGelir.Tutar);
+            SqlParameter p1 = new SqlParameter("DaireNo", yeniGelir.DaireNo);
+            SqlParameter p2 = new SqlParameter("Tarih", yeniGelir.Tarih);
+            SqlParameter p3 = new SqlParameter("Tutar", yeniGelir.Tutar);
             Program.SqlHelper.ExecutePro("InsertGelir", p1, p2, p3);
         }
 

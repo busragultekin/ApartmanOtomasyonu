@@ -14,7 +14,7 @@ namespace ApartmanOtomasyonu
         private SqlConnection Connection { get; set; }
         public SqlHelper()
         {
-            ConnectionString = "Data Source=WISSEN\\SQLEXPRESS;Initial Catalog=ApartmanDB; User ID=Security1; Integrated Security=True";
+            ConnectionString = "Data Source=WISSEN\\SQLEXPRESS;Initial Catalog=ApartmanDB; User ID=Section1; Integrated Security=True";
             Connection = new SqlConnection(ConnectionString);
         }
         public int ExecuteCommand(string query)
